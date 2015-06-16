@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Cinemax | Réservez votre place en ligne!</title>
+
+<!-- Bootstrap core CSS -->
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="css/jcarousel.responsive.css">
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="js/jcarousel.responsive.js"></script>
+
+</head>
+
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="../index.html">Cinemax</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="./index.html">ACCUEIL</a></li>
+					<li><a href="./html/reserver.html">RESERVER</a></li>
+					<li><a href="./html/film.html">FILMS A L'AFFICHE</a></li>
+					<li><a href="#about">SALLES</a></li>
+					<li><a href="#contact">CONTACT</a></li>
+					<li><a href="#contact">?</a></li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="starter-template">
+			<div id="homeTitle">
+				<h2>Bienvenue sur Cinemax !</h2>
+			</div>
+
+			<div class="lead">
+
+				<!-- Bannière -->
+				<div id="carousel-example-generic" class="carousel slide"
+					data-ride="carousel">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#carousel-example-generic" data-slide-to="0"
+							class="active"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					</ol>
+
+					<!-- Wrapper for slides -->
+					<!-- Dimension bannières : 1100*440-->
+					<div class="carousel-inner" role="listbox">
+						<div class="item active">
+							<img src="images/avengers.jpg" alt="...">
+							<!-- Exemple de caption <div class="carousel-caption">
+					The Avengers - Coming soon
+				  </div> -->
+						</div>
+						<div class="item">
+							<img src="images/mad_max.jpg" alt="...">
+						</div>
+						<div class="item">
+							<img src="images/home.png" alt="...">
+						</div>
+					</div>
+
+					<!-- Controls -->
+					<a class="left carousel-control" href="#carousel-example-generic"
+						role="button" data-slide="prev"> <span
+						class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a> <a class="right carousel-control" href="#carousel-example-generic"
+						role="button" data-slide="next"> <span
+						class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+				<!-- FIN Bannière -->
+				<br>
+
+
+				<!--Section informations diverses -->
+
+				<div id="accueilDivers" style="background-color: inherit;">
+
+					<!--  Liste des films projetés, stockés dans la BDD -->
+					<div id="projectedMovies" class="container">
+						<h4>Réservez votre séance en ligne, dès à présent!</h4>
+						<div class="ligne"></div>
+
+						<div class="centerDiv">
+							<div id="seancesListDivId">
+								<table id="seancesListSelectId"></table>
+								<div id="search_container">
+									<form class="form-horizontal">
+										<fieldset>
+											<!-- Select Basic -->
+											<div class="form-group">
+												<label class="col-md-4 control-label control-txt"
+													for="selectbasic">1.</label>
+												<div class="col-md-4 col-control">
+													<select id="moviesListSelectId" name="selectbasic"
+														class="form-control" onchange='search_salle()'>
+														<option selected="selected" value="-1" >Choisir un
+															film</option>
+													</select>
+												</div>
+											</div>
+
+											<!-- Select Basic -->
+											<div class="form-group">
+												<label class="col-md-4 control-label control-txt"
+													for="selectbasic">2.</label>
+												<div class="col-md-4 col-control">
+													<select id="salleListSelectId" name="selectbasic"
+														class="form-control" onchange="search_day()">
+														<option selected="selected" value="-1">Choisir
+															une salle</option>
+													</select>
+												</div>
+											</div>
+
+											<!-- Select Basic -->
+											<div class="form-group">
+												<label class="col-md-4 control-label control-txt"
+													for="selectbasic">3.</label>
+												<div class="col-md-4 col-control">
+													<select id="dayListSelectId" name="selectbasic"
+														class="form-control">
+														<option selected="selected" value="-1">Choisir un
+															jour</option>
+													</select>
+												</div>
+											</div>
+
+											<!-- Select Basic -->
+											<div class="form-group">
+												<label class="col-md-4 control-label control-txt"
+													for="selectbasic">4.</label>
+												<div class="col-md-4 col-control">
+													<select id="horaireListSelectId" name="selectbasic"
+														class="form-control" onchange="search_nbPlaces()">
+														<option selected="selected" value="-1">Choisir une
+															séance</option>
+													</select>
+												</div>
+											</div>
+
+										</fieldset>
+									</form>
+								</div>
+
+								<div id="coordonnees">
+									<form class="form-horizontal">
+										<fieldset>
+											<!-- Text input-->
+											<div class="control-group">
+												<div id="label_last_name">
+													<label for="Last name" style="font-size: 14px;">Nom</label>
+												</div>
+												<div class="controls" id="label_last_name_input">
+													<input id="Last name" name="Last name"
+														placeholder="Entrez votre nom ici" class="form-control"
+														type="text">
+												</div>
+											</div>
+											<!-- Text input-->
+											<div class="control-group">
+												<div id="label_first_name">
+													<label for="First Name" style="font-size: 14px;">Prénom</label>
+												</div>
+												<div class="controls" id="label_first_name_input">
+													<input id="First Name" name="First Name"
+														placeholder="Entrez votre prénom ici"
+														type="text" class="form-control">
+												</div>
+											</div>
+
+											<!-- Text input-->
+											<div class="control-group">
+												<div id="Email">
+													<label for="Email" style="font-size: 14px;">Email</label>
+												</div>
+												<div class="controls" id="Email_input">
+													<input id="First Name" name="First Name"
+														placeholder="Entrez votre prénom ici"
+														type="text" class="form-control">
+												</div>
+											</div>
+
+											<!-- Select Basic -->
+											<div class="control-group">
+												<div id="nbPlaces">
+													<label class="control-label" for="nbPlaces" style="font-size: 14px;">Nombre
+														de places:</label>
+												</div>
+												<div class="controls" id="nbPlaces_input">
+													<select id="nbPlacesSelectId" name="nbPlaces" class="form-control">
+														<option selected="selected" value="-1">0</option>
+													</select>
+
+												</div>
+											</div>
+
+										</fieldset>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="more-link">
+							<!-- Button -->
+							<button id="saveReserv" name="saveButton" class="btn btn-default" type="submit"
+								style="float: right !important; margin: 4.8px; font-size: 14px; font-weight: bold; font-weight: bold; width: 10%; background-color: red; border-colore: red; color: white;">Valider</button>
+						</div>
+					</div>
+					<!--  FIN Liste des films projetés, stockés dans la BDD -->
+
+					<!-- Affichage des nouveautés  -->
+					<div id="newsSections">
+						<h4>Les nouveautés de la semaine</h4>
+						<div class="ligne"></div>
+						<div class="wrapper">
+
+							<div class="jcarousel-wrapper">
+								<div class="jcarousel">
+									<ul>
+										<li><img src="images/01.jpg" alt="Image 1"></li>
+										<li><img src="images/02.jpg" alt="Image 2"></li>
+										<li><img src="images/03.jpg" alt="Image 3"></li>
+										<li><img src="images/04.jpg" alt="Image 4"></li>
+										<li><img src="images/05.jpg" alt="Image 5"></li>
+										<li><img src="images/06.jpg" alt="Image 6"></li>
+									</ul>
+								</div>
+
+								<!--<a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+								<a href="#" class="jcarousel-control-next">&rsaquo;</a> -->
+								<p class="jcarousel-pagination"></p>
+
+							</div>
+						</div>
+						<div class="more-link">
+							<a href="#"
+								style="float: right !important; margin: 3.8px; font-size: 14px; font-weight: bold; color: red;">
+								Voir les films à l'affiche</a>
+						</div>
+
+					</div>
+
+					<table>
+						<tr>
+							<div id="searchSalles">
+								<!-- chercher salle -->
+								<h4>Rechercher une salle !</h4>
+								<div class="ligne"></div>
+
+								<!-- Select Basic -->
+
+								<div class="col-md-4">
+									<select id="moviesListSelectId" name="selectbasic"
+										class="form-control">
+										<option selected="selected" value="">Choisir un film</option>
+									</select>
+								</div>
+
+
+								<!-- Select Basic -->
+
+								<div class="col-md-4">
+									<select id="selectbasic" name="selectbasic"
+										class="form-control">
+										<option selected="selected" value="">Choisir un salle</option>
+										<option value="1">Option one</option>
+										<option value="2">Option two</option>
+									</select>
+								</div>
+								<div class="more-link">
+									<a href="#"
+										style="float: right !important; margin: 5px; font-size: 14px; font-weight: bold; color: red;">
+										Valider</a>
+								</div>
+							</div>
+						</tr>
+
+						<!-- Pub -->
+						<tr>
+							<div id="home_ads">
+								<!-- Select Basic -->
+								<img src="images/kfc.jpg" alt="Pub">
+							</div>
+						</tr>
+					</table>
+
+					<div id="evenements">
+						<h4>Les évènements à ne pas manquer!!!</h4>
+						<div class="ligne"></div>
+
+						<div class="events">
+							<table class="news_txt">
+								<tr>
+									<!-- Evenement n°1 -->
+									<td>
+										<table>
+											<tr>
+												<td class="event_info img_event"><img
+													src="images/01.jpg" alt="Image 1"></td>
+											</tr>
+										</table>
+									</td>
+									<td>
+										<table class="news_txt">
+											<tr>
+												<td class="event_info type_event">Festival</td>
+											</tr>
+											<tr>
+												<td class="event_info place_event">Elysées</td>
+											</tr>
+											<tr>
+												<td class="event_info title_event">Film</td>
+											</tr>
+											<tr>
+												<td class="event_info cine_event">Cinemax Grand Palais</td>
+											</tr>
+											<tr>
+												<td class="event_info date_event">Du 10/06 au 26/07</td>
+											</tr>
+										</table>
+
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- Evenement n°2 -->
+						<div class="events">
+							<table class="news_txt">
+								<tr>
+									<td>
+										<table>
+											<tr>
+												<td class="event_info img_event"><img
+													src="images/16.jpg" alt="Image 1"></td>
+											</tr>
+										</table>
+									</td>
+									<td>
+										<table class="news_txt">
+											<tr>
+												<td class="event_info type_event">Drama</td>
+											</tr>
+											<tr>
+												<td class="event_info place_event">Bastille</td>
+											</tr>
+											<tr>
+												<td class="event_info title_event">Film éléctrisant</td>
+											</tr>
+											<tr>
+												<td class="event_info cine_event">Cinemax Bastille</td>
+											</tr>
+											<tr>
+												<td class="event_info date_event">Du 12/06 au 15/07</td>
+											</tr>
+										</table>
+
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- Evenement n°3 -->
+						<div class="events">
+							<table class="news_txt">
+								<tr>
+									<td>
+										<table>
+											<tr>
+												<td class="event_info img_event"><img
+													src="images/14.jpg" alt="Image 1"></td>
+											</tr>
+										</table>
+									</td>
+									<td>
+										<table class="news_txt">
+											<tr>
+												<td class="event_info type_event">Documentaire</td>
+											</tr>
+											<tr>
+												<td class="event_info place_event">La Défense</td>
+											</tr>
+											<tr>
+												<td class="event_info title_event">Prédictions</td>
+											</tr>
+											<tr>
+												<td class="event_info cine_event">Cinemax La Défense</td>
+											</tr>
+											<tr>
+												<td class="event_info date_event">Du 21/06 au 26/07</td>
+											</tr>
+										</table>
+
+									</td>
+								</tr>
+							</table>
+						</div>
+
+						<!-- Evenement n°4 -->
+						<div class="events">
+							<table class="news_txt">
+								<tr>
+									<td>
+										<table>
+											<tr>
+												<td class="event_info img_event"><img
+													src="images/09.jpg" alt="Image 1"></td>
+											</tr>
+										</table>
+									</td>
+									<td>
+										<table class="news_txt">
+											<tr>
+												<td class="event_info type_event">Courses</td>
+											</tr>
+											<tr>
+												<td class="event_info place_event">Longchamp</td>
+											</tr>
+											<tr>
+												<td class="event_info title_event">Cars</td>
+											</tr>
+											<tr>
+												<td class="event_info cine_event">Hippodrome Cinemax</td>
+											</tr>
+											<tr>
+												<td class="event_info date_event">Du 10/06 au 26/07</td>
+											</tr>
+										</table>
+
+									</td>
+								</tr>
+							</table>
+						</div>
+
+						<!-- Evenement n°4 -->
+						<div class="events">
+							<table class="news_txt">
+								<tr>
+									<td>
+										<table>
+											<tr>
+												<td class="event_info img_event"><img
+													src="images/10.jpg" alt="Image 1"></td>
+											</tr>
+										</table>
+									</td>
+									<td>
+										<table class="news_txt">
+											<tr>
+												<td class="event_info type_event">Expositions</td>
+											</tr>
+											<tr>
+												<td class="event_info place_event">Louvre</td>
+											</tr>
+											<tr>
+												<td class="event_info title_event">L'Age de Glace</td>
+											</tr>
+											<tr>
+												<td class="event_info cine_event">Cinemax le Louvre</td>
+											</tr>
+											<tr>
+												<td class="event_info date_event">Du 26/06 au 26/08</td>
+											</tr>
+										</table>
+
+									</td>
+								</tr>
+							</table>
+						</div>
+
+						<!-- Evenement n°6 -->
+						<div class="events">
+							<table class="news_txt">
+								<tr>
+									<td>
+										<table>
+											<tr>
+												<td class="event_info img_event"><img
+													src="images/05.jpg" alt="Image 1"></td>
+											</tr>
+										</table>
+									</td>
+									<td>
+										<table class="news_txt">
+											<tr>
+												<td class="event_info type_event">Horreur</td>
+											</tr>
+											<tr>
+												<td class="event_info place_event">La grotte</td>
+											</tr>
+											<tr>
+												<td class="event_info title_event">Monstre & cie</td>
+											</tr>
+											<tr>
+												<td class="event_info cine_event">Cinemax Maison Hantée</td>
+											</tr>
+											<tr>
+												<td class="event_info date_event">Du 22/06 au 26/07</td>
+											</tr>
+										</table>
+
+									</td>
+								</tr>
+							</table>
+						</div>
+
+						<div class="more-link">
+							<a href="#"
+								style="float: right; margin: 5px; font-size: 14px; font-weight: bold; color: red;">
+								Voir tous les événements</a>
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+			</div>
+		</div>
+
+	</div>
+	<!-- /.container -->
+
+	<!-- Footer -->
+	<div id="footer">
+		<div class="container">
+			<p class="muted credit">Marion Boko & Alexandra Lemaire.</p>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript ================================================== -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
